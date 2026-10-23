@@ -18,3 +18,9 @@ wizards.addWizard({ name: "Hermione Granger", house: "Gryffindor", level: 6, act
 console.log("Wizard created:", harry);
 console.log("All wizards:", wizards.getAll());
 
+// ---------- Exercise 2: filter by house ----------
+console.log("\n--- Exercise 2: filter by house ---");
+console.log("Gryffindor:", wizards.findByHouse("Gryffindor"));
+console.log("Slytherin:", wizards.findByHouse("Slytherin"));
+console.log("Hufflepuff:", wizards.findByHouse("Hufflepuff"));
+
