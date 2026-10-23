@@ -37,3 +37,15 @@ handleSpellCast({
   spellName: "Expelliarmus",
 });
 
+// ---------- Exercise 4: ValidateSpellPower decorator ----------
+console.log("\n--- Exercise 4: spell power validation ---");
+spells.add({ id: 102, name: "Protego", category: "defense", power: 50 });
+console.log("Valid spell added:", spells.getAll());
+
+try {
+  spells.add({ id: 103, name: "Invalid Spell", category: "attack", power: -10 });
+} catch (error) {
+  console.log("Spell rejected:", (error as Error).message);
+}
+console.log("Number of spells:", spells.getAll().length);
+

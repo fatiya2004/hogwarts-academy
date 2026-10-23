@@ -1,4 +1,5 @@
 import type { NewWizard, Spell, Wizard } from "./types";
+import { ValidateSpellPower } from "./decorators";
 
 export class Repository<T extends { id: number }> {
   protected items: T[] = [];
@@ -32,4 +33,10 @@ export class WizardRepository extends Repository<Wizard> {
   }
 }
 
-export class SpellRepository extends Repository<Spell> {}
+export class SpellRepository extends Repository<Spell> {
+  // Exercise 4: power validation
+  @ValidateSpellPower
+  override add(spell: Spell): void {
+    super.add(spell);
+  }
+}
