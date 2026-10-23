@@ -1,4 +1,5 @@
 import { WizardRepository, SpellRepository } from "./repository";
+import { Cache } from "./decorators";
 import type { SpellCastEvent } from "./types";
 
 const wizards = new WizardRepository();
@@ -48,4 +49,19 @@ try {
   console.log("Spell rejected:", (error as Error).message);
 }
 console.log("Number of spells:", spells.getAll().length);
+
+// ---------- Exercise 5: Cache decorator ----------
+console.log("\n--- Exercise 5: caching ---");
+class SpellCalculator {
+  @Cache
+  calculatePower(basePower: number, multiplier: number): number {
+    console.log("Calculating...");
+    return basePower * multiplier;
+  }
+}
+
+const calculator = new SpellCalculator();
+console.log(calculator.calculatePower(10, 3));
+console.log(calculator.calculatePower(10, 3));
+console.log(calculator.calculatePower(5, 2));
 
