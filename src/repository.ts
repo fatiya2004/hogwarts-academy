@@ -1,4 +1,4 @@
-import type { Spell, Wizard } from "./types";
+import type { NewWizard, Spell, Wizard } from "./types";
 
 export class Repository<T extends { id: number }> {
   protected items: T[] = [];
@@ -16,6 +16,15 @@ export class Repository<T extends { id: number }> {
   }
 }
 
-export class WizardRepository extends Repository<Wizard> {}
+export class WizardRepository extends Repository<Wizard> {
+  private nextId = 1;
+
+  // Exercise 1: the repository assigns the id, not the caller
+  addWizard(data: NewWizard): Wizard {
+    const wizard: Wizard = { id: this.nextId++, ...data };
+    this.add(wizard);
+    return wizard;
+  }
+}
 
 export class SpellRepository extends Repository<Spell> {}
