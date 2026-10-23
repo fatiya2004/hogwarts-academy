@@ -1,0 +1,14 @@
+{
+  "name": "hogwarts-academy",
+  "version": "1.0.0",
+  "description": "TAF TypeScript - Hogwarts Academy",
+  "scripts": {
+    "start": "ts-node src/main.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.0"
+  }
+}
