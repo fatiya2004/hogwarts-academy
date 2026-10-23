@@ -24,3 +24,6 @@ export type AcademyEvent =
 
 // Exercise 1: a wizard without an id
 export type NewWizard = Omit<Wizard, "id">;
+
+// Exercise 3: only spell-cast events
+export type SpellCastEvent = Extract<AcademyEvent, { type: "spell-cast" }>;

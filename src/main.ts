@@ -1,4 +1,5 @@
 import { WizardRepository, SpellRepository } from "./repository";
+import type { SpellCastEvent } from "./types";
 
 const wizards = new WizardRepository();
 const spells = new SpellRepository();
@@ -23,4 +24,16 @@ console.log("\n--- Exercise 2: filter by house ---");
 console.log("Gryffindor:", wizards.findByHouse("Gryffindor"));
 console.log("Slytherin:", wizards.findByHouse("Slytherin"));
 console.log("Hufflepuff:", wizards.findByHouse("Hufflepuff"));
+
+// ---------- Exercise 3: Extract and spell-cast events ----------
+console.log("\n--- Exercise 3: spell-cast event ---");
+function handleSpellCast(event: SpellCastEvent): void {
+  console.log(`Wizard ${event.wizardId} cast ${event.spellName}`);
+}
+
+handleSpellCast({
+  type: "spell-cast",
+  wizardId: 1,
+  spellName: "Expelliarmus",
+});
 
