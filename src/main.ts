@@ -1,6 +1,6 @@
 import { WizardRepository, SpellRepository } from "./repository";
 import { Cache } from "./decorators";
-import type { SpellCastEvent } from "./types";
+import type { House, SpellCastEvent, Wizard } from "./types";
 
 const wizards = new WizardRepository();
 const spells = new SpellRepository();
@@ -65,3 +65,53 @@ console.log(calculator.calculatePower(10, 3));
 console.log(calculator.calculatePower(10, 3));
 console.log(calculator.calculatePower(5, 2));
 
+// ---------- Exercise 6: type guards ----------
+console.log("\n--- Exercise 6: type guards ---");
+const validHouses: readonly House[] = [
+  "Gryffindor",
+  "Slytherin",
+  "Ravenclaw",
+  "Hufflepuff",
+];
+
+function isHouse(value: unknown): value is House {
+  return (
+    typeof value === "string" &&
+    validHouses.some(house => house === value)
+  );
+}
+
+function isWizard(value: unknown): value is Wizard {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+
+  const candidate = value as Record<string, unknown>;
+
+  return (
+    typeof candidate.id === "number" &&
+    typeof candidate.name === "string" &&
+    isHouse(candidate.house) &&
+    typeof candidate.level === "number" &&
+    typeof candidate.active === "boolean"
+  );
+}
+
+const validData: unknown = {
+  id: 1,
+  name: "Harry Potter",
+  house: "Gryffindor",
+  level: 5,
+  active: true,
+};
+
+const invalidData: unknown = {
+  id: 2,
+  name: "Viktor",
+  house: "Durmstrang",
+  level: 5,
+  active: true,
+};
+
+console.log(isWizard(validData));   // true
+console.log(isWizard(invalidData)); // false
